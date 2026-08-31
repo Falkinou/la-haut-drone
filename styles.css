@@ -581,6 +581,7 @@ h3 {
 }
 
 .map-live {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -588,12 +589,105 @@ h3 {
   box-shadow: 0 20px 42px rgba(18, 53, 38, 0.14);
 }
 
-.map-live iframe {
-  display: block;
+.territory-map-canvas {
   width: 100%;
   height: clamp(340px, 38vw, 500px);
+  background: #dbe3dc;
+}
+
+.territory-map-canvas.leaflet-container {
+  height: 100%;
+  color: var(--ink);
+  font: inherit;
+}
+
+.territory-map-canvas .leaflet-control-zoom,
+.territory-map-canvas .leaflet-control-layers {
+  overflow: hidden;
+  border: 1px solid rgba(23, 33, 29, 0.12);
+  border-radius: 7px;
+  box-shadow: 0 8px 24px rgba(18, 53, 38, 0.18);
+}
+
+.territory-map-canvas .leaflet-control-zoom a,
+.territory-map-canvas .leaflet-control-layers-toggle {
+  color: var(--forest-deep);
+  background-color: rgba(255, 255, 255, 0.94);
+}
+
+.territory-map-canvas .leaflet-control-zoom a {
+  width: 34px;
+  height: 34px;
+  line-height: 32px;
+}
+
+.territory-map-canvas .leaflet-control-attribution {
+  padding: 3px 6px;
+  color: rgba(23, 33, 29, 0.64);
+  background: rgba(255, 255, 255, 0.84);
+  font-size: 9px;
+}
+
+.territory-map-canvas .leaflet-control-attribution a {
+  color: inherit;
+}
+
+.map-tooltip {
   border: 0;
-  filter: saturate(0.82) contrast(1.02);
+  border-radius: 6px;
+  padding: 7px 10px;
+  color: var(--white);
+  background: var(--forest-deep);
+  box-shadow: 0 8px 20px rgba(18, 53, 38, 0.22);
+  font: 800 0.82rem/1 Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.map-tooltip.leaflet-tooltip-top::before {
+  border-top-color: var(--forest-deep);
+}
+
+.moosch-pin {
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.moosch-pin__dot {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 22px;
+  border: 4px solid var(--white);
+  border-radius: 50%;
+  background: var(--forest);
+  box-shadow: 0 5px 14px rgba(8, 23, 18, 0.32);
+}
+
+.moosch-pin__dot::after {
+  position: absolute;
+  inset: -9px;
+  border: 1px solid rgba(31, 77, 58, 0.55);
+  border-radius: 50%;
+  content: "";
+  animation: map-pulse 2.4s ease-out infinite;
+}
+
+@keyframes map-pulse {
+  0% {
+    opacity: 0.72;
+    transform: scale(0.55);
+  }
+
+  72%,
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moosch-pin__dot::after {
+    animation: none;
+  }
 }
 
 .territory-map figcaption {
@@ -1094,7 +1188,7 @@ textarea:focus {
     min-height: 320px;
   }
 
-  .map-live iframe {
+  .territory-map-canvas {
     height: 340px;
   }
 

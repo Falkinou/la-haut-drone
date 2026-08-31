@@ -8,7 +8,13 @@
       name="description"
       content="Photos et vidéos par drone en Alsace, réalisées par Loïc Arnold depuis la vallée de la Thur."
     />
-    <link rel="stylesheet" href="styles.css?v=20260831-map2" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIINfQ8kPmfKyn0nvPzzft5lFAt3qsKp7P4="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css?v=20260831-moosch-map" />
   </head>
   <body>
     <header class="site-header" aria-label="Navigation principale">
@@ -244,16 +250,22 @@
           </div>
           <figure class="territory-map">
             <div class="map-live">
-              <iframe
-                title="Carte OpenStreetMap de la vallée de la Thur"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=6.88%2C47.70%2C7.32%2C47.94&amp;layer=mapnik"
-                loading="lazy"
-              ></iframe>
+              <div
+                class="territory-map-canvas"
+                id="territory-map-canvas"
+                aria-label="Carte interactive de Moosch, dans la vallée de la Thur"
+              >
+                <noscript>
+                  <a href="https://www.openstreetmap.org/#map=13/47.8598/7.0487">
+                    Voir Moosch sur OpenStreetMap
+                  </a>
+                </noscript>
+              </div>
             </div>
             <figcaption>
-              <span>Vallée de la Thur, Haut-Rhin.</span>
+              <span>Moosch, vallée de la Thur.</span>
               <a
-                href="https://www.openstreetmap.org/#map=11/47.82/7.08"
+                href="https://www.openstreetmap.org/#map=13/47.8598/7.0487"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -470,6 +482,11 @@
       </figure>
     </div>
 
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
     <script src="script.js"></script>
   </body>
 </html>

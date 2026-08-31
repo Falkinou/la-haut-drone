@@ -20,6 +20,63 @@ const lightboxClose = lightbox.querySelector(".lightbox-close");
 
 year.textContent = new Date().getFullYear();
 
+const territoryMapCanvas = document.querySelector("#territory-map-canvas");
+
+if (territoryMapCanvas && window.L) {
+  const map = window.L.map(territoryMapCanvas, {
+    center: [47.8597615, 7.0486582],
+    zoom: 12,
+    zoomControl: false,
+    scrollWheelZoom: false,
+  });
+
+  const topographicLayer = window.L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+    {
+      attribution: "Tiles &copy; Esri",
+      maxZoom: 19,
+    }
+  );
+
+  const aerialLayer = window.L.layerGroup([
+    window.L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      {
+        attribution: "Tiles &copy; Esri",
+        maxZoom: 19,
+      }
+    ),
+    window.L.tileLayer(
+      "https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+      { maxZoom: 19 }
+    ),
+  ]);
+
+  topographicLayer.addTo(map);
+  window.L.control.zoom({ position: "topright" }).addTo(map);
+  window.L.control.layers(
+    { Carte: topographicLayer, Aérien: aerialLayer },
+    undefined,
+    { collapsed: true, position: "topright" }
+  ).addTo(map);
+
+  const mooschMarker = window.L.marker([47.8597615, 7.0486582], {
+    icon: window.L.divIcon({
+      className: "moosch-pin",
+      html: '<span class="moosch-pin__dot"></span>',
+      iconSize: [22, 22],
+      iconAnchor: [11, 11],
+      tooltipAnchor: [0, -18],
+    }),
+  }).addTo(map);
+
+  mooschMarker.bindTooltip("Moosch", {
+    className: "map-tooltip",
+    direction: "top",
+    permanent: true,
+  });
+}
+
 navToggle.addEventListener("click", () => {
   const isOpen = header.classList.toggle("nav-open");
   navToggle.setAttribute("aria-expanded", String(isOpen));
