@@ -8,7 +8,7 @@
       name="description"
       content="Photos et vidéos par drone en Alsace, réalisées par Loïc Arnold depuis la vallée de la Thur."
     />
-    <link rel="stylesheet" href="styles.css?v=20260831-photos" />
+    <link rel="stylesheet" href="styles.css?v=20260831-map" />
   </head>
   <body>
     <header class="site-header" aria-label="Navigation principale">
@@ -242,46 +242,23 @@
               <li>Piémont des Vosges</li>
             </ul>
           </div>
-          <figure class="territory-map" aria-label="Carte stylisée de la zone d'intervention">
-            <svg viewBox="0 0 760 520" role="img" aria-labelledby="territory-map-title territory-map-desc">
-              <title id="territory-map-title">Vallée de la Thur dans le Haut-Rhin</title>
-              <desc id="territory-map-desc">Carte stylisée situant la vallée de la Thur entre les Vosges du Sud, Thann, Cernay et Mulhouse.</desc>
-              <defs>
-                <linearGradient id="mapGround" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0" stop-color="#f9faf3" />
-                  <stop offset="1" stop-color="#e5ece3" />
-                </linearGradient>
-                <linearGradient id="mapRidge" x1="0" x2="1">
-                  <stop offset="0" stop-color="#234f3b" />
-                  <stop offset="1" stop-color="#77743d" />
-                </linearGradient>
-              </defs>
-              <rect class="map-frame" x="0" y="0" width="760" height="520" rx="24" />
-              <path class="map-soft" d="M76 377 C142 284 203 234 285 219 C366 204 432 166 491 104 C538 55 627 56 690 102 L690 440 L76 440 Z" />
-              <path class="map-ridge back" d="M90 211 C149 164 197 148 250 181 C305 215 342 235 398 193 C454 151 498 112 566 141 C608 159 642 190 694 204" />
-              <path class="map-ridge front" d="M72 319 C142 277 203 246 276 266 C343 285 384 294 444 259 C505 223 552 226 614 261 C644 278 670 289 702 294" />
-              <path class="map-thur" d="M116 331 C163 308 209 296 260 300 C315 304 357 294 405 263 C450 234 496 229 548 244" />
-              <path class="map-road" d="M145 370 C211 345 278 340 340 361 C403 382 481 383 604 336" />
-              <g class="map-pins">
-                <circle cx="175" cy="306" r="8" />
-                <circle cx="288" cy="300" r="8" />
-                <circle cx="405" cy="263" r="8" />
-                <circle cx="548" cy="244" r="8" />
-                <circle cx="611" cy="336" r="8" />
-              </g>
-              <g class="map-labels">
-                <text class="main" x="120" y="92">Vallée de la Thur</text>
-                <text x="126" y="292">Saint-Amarin</text>
-                <text x="270" y="287">Thann</text>
-                <text x="416" y="248">Cernay</text>
-                <text x="574" y="323">Mulhouse</text>
-                <text class="muted" x="90" y="190">Vosges du Sud</text>
-                <text class="muted" x="548" y="112">Haut-Rhin</text>
-                <text class="muted" x="582" y="410">Alsace</text>
-              </g>
-            </svg>
+          <figure class="territory-map">
+            <div class="map-live">
+              <iframe
+                title="Carte OpenStreetMap de la vallée de la Thur"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=6.88%2C47.70%2C7.32%2C47.94&amp;layer=mapnik"
+                loading="lazy"
+              ></iframe>
+            </div>
             <figcaption>
-              Haut-Rhin, Alsace et Vosges du Sud.
+              <span>Vallée de la Thur, Haut-Rhin.</span>
+              <a
+                href="https://www.openstreetmap.org/#map=11/47.82/7.08"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ouvrir la carte
+              </a>
             </figcaption>
           </figure>
         </div>

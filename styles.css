@@ -580,76 +580,37 @@ h3 {
   margin: 0;
 }
 
-.territory-map svg {
+.map-live {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 20px 42px rgba(18, 53, 38, 0.14);
+}
+
+.map-live iframe {
   display: block;
   width: 100%;
-  min-height: 430px;
-  filter: drop-shadow(0 20px 42px rgba(18, 53, 38, 0.16));
+  height: clamp(340px, 38vw, 500px);
+  border: 0;
+  filter: saturate(0.82) contrast(1.02);
 }
 
 .territory-map figcaption {
-  max-width: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   margin: 12px 0 0;
   color: var(--muted);
   font-size: 0.92rem;
 }
 
-.map-frame {
-  fill: url("#mapGround");
-  stroke: rgba(31, 77, 58, 0.16);
-}
-
-.map-soft {
-  fill: rgba(31, 77, 58, 0.08);
-}
-
-.map-ridge {
-  fill: none;
-  stroke: url("#mapRidge");
-  stroke-linecap: round;
-  stroke-width: 10;
-}
-
-.map-ridge.back {
-  opacity: 0.38;
-  stroke-width: 8;
-}
-
-.map-thur {
-  fill: none;
-  stroke: #77a8ba;
-  stroke-linecap: round;
-  stroke-width: 6;
-}
-
-.map-road {
-  fill: none;
-  stroke: rgba(23, 33, 29, 0.22);
-  stroke-dasharray: 8 10;
-  stroke-linecap: round;
-  stroke-width: 4;
-}
-
-.map-pins circle {
-  fill: var(--forest);
-  stroke: var(--white);
-  stroke-width: 4;
-}
-
-.map-labels text {
-  fill: var(--forest-deep);
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.map-labels .main {
-  fill: var(--forest);
-  font-size: 34px;
-}
-
-.map-labels .muted {
-  fill: rgba(23, 33, 29, 0.46);
-  font-size: 20px;
+.territory-map a {
+  color: var(--forest);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .look {
@@ -1133,8 +1094,8 @@ textarea:focus {
     min-height: 320px;
   }
 
-  .territory-map svg {
-    min-height: 320px;
+  .map-live iframe {
+    height: 340px;
   }
 
   .mission-option {
@@ -1207,8 +1168,10 @@ textarea:focus {
     padding: 64px 16px;
   }
 
-  .map-labels text {
-    font-size: 22px;
+  .territory-map figcaption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .lightbox {
