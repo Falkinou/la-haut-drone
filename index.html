@@ -8,7 +8,7 @@
       name="description"
       content="Photos et vidéos par drone en Alsace, réalisées par Loïc Arnold depuis la vallée de la Thur."
     />
-    <link rel="stylesheet" href="styles.css?v=20260831-portrait" />
+    <link rel="stylesheet" href="styles.css?v=20260831-photos" />
   </head>
   <body>
     <header class="site-header" aria-label="Navigation principale">
@@ -40,11 +40,21 @@
 
     <main id="top">
       <section class="hero" aria-label="Présentation de Là haut">
-        <img
-          class="hero-image"
-          src="assets/hero-drone-la-haut.png"
-          alt="Drone professionnel en vol au-dessus d'un paysage français au lever du soleil"
-        />
+        <picture class="hero-media">
+          <source
+            media="(max-width: 700px)"
+            srcset="assets/hero-coucher-soleil-mobile.jpg"
+          />
+          <img
+            class="hero-image"
+            src="assets/hero-coucher-soleil.jpg"
+            alt="Paysage vallonné au coucher du soleil photographié par drone"
+            width="2560"
+            height="1920"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="hero-content">
           <p class="eyebrow">Photo et vidéo drone - Alsace</p>
@@ -143,13 +153,13 @@
             tabindex="0"
             role="button"
             data-lightbox
-            data-src="assets/portfolio-alsace-vallee.png"
+            data-src="assets/portfolio-vallee-brume.jpg"
             data-kicker="Territoire"
             data-title="Lire un lieu en un seul plan."
           >
             <img
-              src="assets/portfolio-alsace-vallee.png"
-              alt="Vue aérienne d'une vallée alsacienne et d'un village au pied des Vosges"
+              src="assets/portfolio-vallee-brume.jpg"
+              alt="Vue aérienne d'une vallée boisée traversée par la brume"
             />
             <figcaption>
               <span>Territoire</span>
@@ -330,7 +340,7 @@
               data-project="entreprise"
               data-title="Présenter une entreprise"
               data-copy="Des plans qui situent un site et donnent du relief à une communication."
-              data-image="assets/portfolio-alsace-vallee.png"
+              data-image="assets/hero-coucher-soleil.jpg"
               data-message="Je souhaite réaliser des images drone pour une entreprise. Lieu:&#10;Activité / site à montrer:&#10;Usage prévu: site web, film, réseaux, présentation..."
             >
               Entreprise
@@ -363,7 +373,7 @@
               data-project="territoire"
               data-title="Raconter un territoire"
               data-copy="Des vues larges pour faire respirer un paysage, un village ou un patrimoine."
-              data-image="assets/portfolio-alsace-vallee.png"
+              data-image="assets/portfolio-vallee-brume.jpg"
               data-message="Je souhaite raconter un territoire ou un lieu par drone. Lieu:&#10;Ce qu'il faut montrer:&#10;Ambiance recherchée:"
             >
               Territoire
