@@ -291,17 +291,42 @@ h3 {
 
 .intro {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.7fr);
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.54fr);
   gap: clamp(32px, 8vw, 104px);
-  align-items: end;
+  align-items: center;
   background: var(--paper);
 }
 
-.intro p:last-child,
+.intro-copy {
+  max-width: 650px;
+}
+
+.intro-summary,
 .contact-copy p {
   margin: 0;
   color: var(--muted);
   font-size: 1.12rem;
+}
+
+.intro-summary {
+  max-width: 42ch;
+  margin-top: 28px;
+}
+
+.intro-portrait {
+  width: min(100%, 390px);
+  margin: 0;
+  justify-self: end;
+}
+
+.intro-portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 2px;
+  box-shadow: 18px 18px 0 rgba(119, 116, 61, 0.15);
 }
 
 .name-story {
@@ -1012,6 +1037,10 @@ textarea:focus {
   .look,
   .contact {
     grid-template-columns: 1fr;
+  }
+
+  .intro-portrait {
+    justify-self: start;
   }
 
   .area {
