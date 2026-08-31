@@ -596,7 +596,6 @@ h3 {
 }
 
 .territory-map-canvas.leaflet-container {
-  height: 100%;
   color: var(--ink);
   font: inherit;
 }
