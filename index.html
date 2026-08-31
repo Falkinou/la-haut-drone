@@ -419,31 +419,28 @@
         <form
           class="contact-form"
           id="contact-form"
-          action="https://formsubmit.co/ajax/contact@lahaut-drone.fr"
+          action="contact.php"
           method="POST"
           accept-charset="UTF-8"
           aria-label="Demande de contact"
         >
-          <input type="hidden" name="_subject" value="Nouvelle demande - Là haut" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="type_de_projet" id="contact-project" value="" />
           <input class="form-trap" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <label>
             Nom
-            <input type="text" name="name" placeholder="Votre nom" autocomplete="name" required />
+            <input type="text" name="name" placeholder="Votre nom" autocomplete="name" maxlength="120" required />
           </label>
           <label>
             E-mail
-            <input type="email" name="email" placeholder="vous@exemple.fr" autocomplete="email" required />
+            <input type="email" name="email" placeholder="vous@exemple.fr" autocomplete="email" maxlength="254" required />
           </label>
           <label>
             <span class="label-text">Téléphone <span class="optional">(facultatif)</span></span>
-            <input type="tel" name="telephone" placeholder="06 00 00 00 00" autocomplete="tel" />
+            <input type="tel" name="telephone" placeholder="06 00 00 00 00" autocomplete="tel" maxlength="40" />
           </label>
           <label>
             Projet
-            <textarea name="message" rows="5" placeholder="Lieu, besoin, date idéale..." required></textarea>
+            <textarea name="message" rows="5" placeholder="Lieu, besoin, date idéale..." maxlength="4000" required></textarea>
           </label>
           <button class="button primary form-button" type="submit">Envoyer la demande</button>
           <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
