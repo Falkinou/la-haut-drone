@@ -7,6 +7,7 @@ const messageField = form.querySelector("textarea[name='message']");
 const projectField = form.querySelector("#contact-project");
 const formButton = form.querySelector("button[type='submit']");
 const formStatus = form.querySelector("#contact-status");
+const mailFallback = form.querySelector("#contact-mail-fallback");
 const missionOptions = document.querySelectorAll(".mission-option");
 const missionTitle = document.querySelector("#mission-preview-title");
 const missionCopy = document.querySelector("#mission-preview-copy");
@@ -77,13 +78,40 @@ if (territoryMapCanvas && window.L) {
   });
 }
 
+let previousScrollY = window.scrollY;
+
+const updateHeaderState = () => {
+  const currentScrollY = window.scrollY;
+  const heroHeight = document.querySelector(".hero")?.offsetHeight ?? 0;
+  const headerThreshold = Math.max(heroHeight - header.offsetHeight, 24);
+
+  header.classList.toggle("is-scrolled", currentScrollY > headerThreshold);
+
+  if (
+    currentScrollY > 160 &&
+    currentScrollY > previousScrollY &&
+    !header.classList.contains("nav-open")
+  ) {
+    header.classList.add("is-hidden");
+  } else {
+    header.classList.remove("is-hidden");
+  }
+
+  previousScrollY = currentScrollY;
+};
+
+updateHeaderState();
+window.addEventListener("scroll", updateHeaderState, { passive: true });
+
 navToggle.addEventListener("click", () => {
+  header.classList.remove("is-hidden");
   const isOpen = header.classList.toggle("nav-open");
   navToggle.setAttribute("aria-expanded", String(isOpen));
 });
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
+    header.classList.remove("is-hidden");
     header.classList.remove("nav-open");
     navToggle.setAttribute("aria-expanded", "false");
   });
@@ -128,13 +156,14 @@ const setFormStatus = (message, type = "") => {
   formStatus.className = `form-status${type ? ` is-${type}` : ""}`;
 };
 
-const openMailFallback = (data) => {
+const showMailFallback = (data) => {
   const subject = encodeURIComponent("Demande de captation drone - Là haut");
   const body = encodeURIComponent(
     `Bonjour Loïc,\n\nNom: ${data.get("name")}\nE-mail: ${data.get("email")}\nTéléphone: ${data.get("telephone") || "Non renseigné"}\nProjet: ${data.get("type_de_projet") || "Non renseigné"}\n\n${data.get("message")}`
   );
 
-  window.location.href = `mailto:contact@lahaut-drone.fr?subject=${subject}&body=${body}`;
+  mailFallback.href = `mailto:contact@lahaut-drone.fr?subject=${subject}&body=${body}`;
+  mailFallback.hidden = false;
 };
 
 const openLightbox = (card) => {
@@ -196,6 +225,7 @@ form.addEventListener("submit", async (event) => {
   const initialButtonText = formButton.textContent;
   formButton.disabled = true;
   formButton.textContent = "Envoi en cours...";
+  mailFallback.hidden = true;
   setFormStatus("Envoi de votre demande...");
 
   try {
@@ -213,10 +243,11 @@ form.addEventListener("submit", async (event) => {
     form.reset();
     projectField.value = "";
     messageField.dataset.generated = "false";
+    mailFallback.hidden = true;
     setFormStatus("Merci, votre demande a bien été envoyée. Loïc vous répondra rapidement.", "success");
   } catch {
-    setFormStatus("L'envoi automatique n'a pas abouti. Votre messagerie va s'ouvrir pour terminer la demande.", "error");
-    openMailFallback(data);
+    setFormStatus("Votre demande est prête. Ouvrez votre messagerie pour finaliser l'envoi.", "fallback");
+    showMailFallback(data);
   } finally {
     formButton.disabled = false;
     formButton.textContent = initialButtonText;
